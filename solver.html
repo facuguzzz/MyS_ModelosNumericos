@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Numeric Solver Studio - Alternativa JS</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="hero">
+        <a href="index.html" class="back-link" title="Volver al menú">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          <span>Volver</span>
+        </a>
+        <p class="eyebrow">Alternativa HTML + CSS + JS</p>
+        <h1>Numeric Solver Studio</h1>
+        <p>
+          Carga parametros, ejecuta algoritmos de calculo y visualiza resultados
+          en tiempo real, sin framework.
+        </p>
+      </section>
+
+      <section class="workspace">
+        <section class="panel" id="formPanel">
+          <h2>Configurar parametros</h2>
+          <p class="muted" id="algorithmDescription"></p>
+          <form class="form-grid" id="parameterForm">
+            <div id="dynamicSections" class="algorithm-sections"></div>
+            <button type="submit" class="primary-button" id="submitButton">
+              Ejecutar calculo
+            </button>
+          </form>
+        </section>
+
+        <section class="panel">
+          <h2>Resultado</h2>
+          <p class="error-text" id="errorText" hidden></p>
+          <p class="muted" id="placeholderText">
+            Ejecuta un algoritmo para ver los resultados numericos.
+          </p>
+          <div class="result-grid" id="resultGrid" hidden>
+            <article class="metric">
+              <span class="metric-label">Valor principal</span>
+              <strong id="resultValue"></strong>
+            </article>
+
+            <article class="metric">
+              <span class="metric-label">Iteraciones</span>
+              <strong id="resultIterations"></strong>
+            </article>
+
+            <article class="metric">
+              <span class="metric-label">Error</span>
+              <strong id="resultError"></strong>
+            </article>
+
+            <article class="metric">
+              <span class="metric-label">Tiempo</span>
+              <strong id="resultElapsed"></strong>
+            </article>
+
+            <article class="metric metric-wide">
+              <span class="metric-label">Resumen</span>
+              <strong id="resultSummary"></strong>
+            </article>
+
+            <article class="metric metric-wide">
+              <span class="metric-label">Valores auxiliares</span>
+              <div class="key-value-list" id="resultOutputs"></div>
+            </article>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="js/algorithms/registry.js" defer></script>
+    <script src="js/algorithms/bisection.js" defer></script>
+    <script src="js/app.js" defer></script>
+  </body>
+</html>
