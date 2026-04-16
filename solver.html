@@ -23,61 +23,118 @@
         </p>
       </section>
 
-      <section class="workspace">
-        <section class="panel" id="formPanel">
-          <h2>Configurar parametros</h2>
-          <p class="muted" id="algorithmDescription"></p>
-          <form class="form-grid" id="parameterForm">
-            <div id="dynamicSections" class="algorithm-sections"></div>
-            <button type="submit" class="primary-button" id="submitButton">
-              Ejecutar calculo
-            </button>
-          </form>
-        </section>
+      <section class="tabs-shell" aria-label="Secciones del metodo">
+        <button type="button" class="tab-button is-active" data-tab="calculo">Calculo</button>
+        <button type="button" class="tab-button" data-tab="teoria">Teoria</button>
+        <button type="button" class="tab-button" data-tab="ejemplo">Ejemplo</button>
+      </section>
 
-        <section class="panel">
-          <h2>Resultado</h2>
-          <p class="error-text" id="errorText" hidden></p>
-          <p class="muted" id="placeholderText">
-            Ejecuta un algoritmo para ver los resultados numericos.
-          </p>
-          <div class="result-grid" id="resultGrid" hidden>
-            <article class="metric">
-              <span class="metric-label">Valor principal</span>
-              <strong id="resultValue"></strong>
-            </article>
+      <section class="tab-content is-active" id="tab-calculo" data-tab-content="calculo">
+        <section class="calculation-layout">
+          <section class="panel" id="formPanel">
+            <h2>Configurar parametros</h2>
+            <p class="method-tag" id="activeMethodTitle">Metodo actual: -</p>
+            <p class="muted" id="algorithmDescription"></p>
+            <form class="form-grid" id="parameterForm">
+              <div id="dynamicSections" class="algorithm-sections"></div>
+              <button type="submit" class="primary-button" id="submitButton">
+                Ejecutar calculo
+              </button>
+            </form>
+          </section>
 
-            <article class="metric">
-              <span class="metric-label">Iteraciones</span>
-              <strong id="resultIterations"></strong>
-            </article>
+          <section class="panel" id="resultPanel">
+            <h2>Resultado</h2>
+            <p class="error-text" id="errorText" hidden></p>
+            <p class="muted" id="placeholderText">
+              Ejecuta un algoritmo para ver los resultados numericos.
+            </p>
+            <div class="result-grid" id="resultGrid" hidden>
+              <div class="result-metrics-grid" id="resultMetrics"></div>
 
-            <article class="metric">
-              <span class="metric-label">Error</span>
-              <strong id="resultError"></strong>
-            </article>
+              <article class="metric metric-wide">
+                <span class="metric-label" id="resultSummaryLabel">Resumen</span>
+                <strong id="resultSummary"></strong>
+              </article>
+            </div>
+          </section>
 
-            <article class="metric">
-              <span class="metric-label">Tiempo</span>
-              <strong id="resultElapsed"></strong>
-            </article>
-
-            <article class="metric metric-wide">
-              <span class="metric-label">Resumen</span>
-              <strong id="resultSummary"></strong>
-            </article>
-
-            <article class="metric metric-wide">
-              <span class="metric-label">Valores auxiliares</span>
+          <section class="panel" id="outputsPanel">
+            <h2 id="outputsTitle">Valores auxiliares</h2>
+            <div class="metric metric-wide">
               <div class="key-value-list" id="resultOutputs"></div>
-            </article>
-          </div>
+            </div>
+          </section>
+
+          <section class="panel visualization-panel" id="visualizationPanel" hidden>
+            <h2 id="visualizationTitle">Visualizacion del algoritmo</h2>
+            <p class="muted" id="visualizationSummary">
+              Curva de la funcion y evolucion del intervalo en cada iteracion.
+            </p>
+            <div class="plot-shell" id="plotShell">
+              <canvas
+                id="processCanvas"
+                class="process-canvas"
+                width="980"
+                height="380"
+                aria-label="Grafico interactivo del metodo de biseccion"
+              ></canvas>
+              <div class="plot-tooltip" id="plotTooltip" hidden></div>
+            </div>
+            <div class="plot-legend">
+              <span><i class="legend-dot legend-dot-function"></i>f(x)</span>
+              <span><i class="legend-dot legend-dot-midpoint"></i>Puntos medios c_n</span>
+              <span><i class="legend-bar legend-bar-interval"></i>Intervalos [a_n, b_n]</span>
+            </div>
+          </section>
+
+          <section class="panel iterations-panel" id="iterationsPanel" hidden>
+            <h2 id="tableTitle">Tabla de datos calculados</h2>
+            <div class="table-wrapper">
+              <table class="iterations-table" id="iterationsTable">
+                <thead>
+                  <tr id="iterationsHead">
+                    <th>Dato</th>
+                  </tr>
+                </thead>
+                <tbody id="iterationsBody"></tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+      </section>
+
+      <section class="tab-content" id="tab-teoria" data-tab-content="teoria" hidden>
+        <section class="panel theory-panel">
+          <h2 id="theoryTitle">Teoria</h2>
+          <p class="muted" id="theoryIntro"></p>
+
+          <div class="theory-grid" id="theoryCards"></div>
+
+          <article class="theory-card theory-card-wide" id="theoryGraphCard" hidden>
+            <h3 id="theoryGraphTitle">Grafico conceptual</h3>
+            <p class="muted" id="theoryGraphDescription"></p>
+            <canvas id="theoryCanvas" class="theory-canvas" width="980" height="320" aria-label="Grafico del metodo de biseccion"></canvas>
+          </article>
+        </section>
+      </section>
+
+      <section class="tab-content" id="tab-ejemplo" data-tab-content="ejemplo" hidden>
+        <section class="panel example-panel">
+          <h2 id="exampleTitle">Ejemplo</h2>
+          <p class="muted" id="exampleIntro"></p>
+
+          <div class="example-steps" id="exampleCards"></div>
         </section>
       </section>
     </main>
 
+    <script src="js/core/method-skill.js" defer></script>
+    <script src="js/core/expression-evaluator.js" defer></script>
+    <script src="js/core/algorithm-form.js" defer></script>
     <script src="js/algorithms/registry.js" defer></script>
     <script src="js/algorithms/bisection.js" defer></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="js/app.js" defer></script>
   </body>
 </html>

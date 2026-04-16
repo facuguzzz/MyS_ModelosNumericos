@@ -52,7 +52,7 @@ body::after {
 }
 
 .page-shell {
-  width: min(1120px, 92vw);
+  width: min(1220px, 95vw);
   margin: 0 auto;
   padding: 42px 0 56px;
 }
@@ -96,6 +96,18 @@ body::after {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 16px;
+}
+
+.category-group + .category-group {
+  margin-top: 22px;
+}
+
+.category-title {
+  margin: 0 0 10px;
+  font-size: 0.98rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-strong);
 }
 
 .method-card {
@@ -192,12 +204,89 @@ body::after {
   background: rgba(255, 255, 255, 0.9);
 }
 
+.tabs-shell {
+  margin-top: 16px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tab-button {
+  border: 1px solid rgba(15, 79, 106, 0.18);
+  border-radius: 999px;
+  padding: 9px 14px;
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--accent-strong);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.tab-button.is-active {
+  color: #ffffff;
+  border-color: transparent;
+  background: linear-gradient(110deg, var(--accent), var(--accent-strong));
+}
+
+.tab-content {
+  margin-top: 14px;
+}
+
 .workspace {
   margin-top: 22px;
   display: grid;
-  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
   align-items: start;
   gap: 16px;
+}
+
+.calculation-layout {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: minmax(280px, 0.8fr) minmax(320px, 1fr) minmax(240px, 0.65fr);
+  grid-template-areas:
+    "form result outputs"
+    "form visualization visualization"
+    "iterations iterations iterations";
+  align-items: start;
+  gap: 16px;
+}
+
+#formPanel {
+  grid-area: form;
+}
+
+#resultPanel {
+  grid-area: result;
+}
+
+#outputsPanel {
+  grid-area: outputs;
+}
+
+#visualizationPanel {
+  grid-area: visualization;
+}
+
+#iterationsPanel {
+  grid-area: iterations;
+}
+
+.method-tag {
+  margin: 0 0 8px;
+  display: inline-flex;
+  width: fit-content;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--accent-strong);
+  background: rgba(15, 118, 110, 0.14);
 }
 
 .panel {
@@ -252,6 +341,15 @@ body::after {
 .section-fields {
   display: grid;
   gap: 10px;
+}
+
+.section-notes {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--text-muted);
+  display: grid;
+  gap: 4px;
+  font-size: 0.84rem;
 }
 
 .field {
@@ -314,6 +412,11 @@ body::after {
 .result-grid {
   margin-top: 10px;
   display: grid;
+  gap: 12px;
+}
+
+.result-metrics-grid {
+  display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
 }
@@ -356,9 +459,172 @@ body::after {
   border-bottom: none;
 }
 
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.iterations-panel {
+  margin-top: 16px;
+}
+
+.visualization-panel {
+  margin-top: 16px;
+  display: grid;
+  gap: 10px;
+}
+
+.plot-shell {
+  position: relative;
+  border: 1px dashed rgba(19, 35, 58, 0.2);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.6);
+  overflow: hidden;
+}
+
+.process-canvas {
+  width: 100%;
+  height: 380px;
+  display: block;
+  cursor: crosshair;
+}
+
+.plot-tooltip {
+  position: absolute;
+  min-width: 220px;
+  max-width: min(320px, 80vw);
+  pointer-events: none;
+  border-radius: 10px;
+  border: 1px solid rgba(15, 79, 106, 0.2);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 10px 24px rgba(23, 40, 62, 0.2);
+  padding: 10px 12px;
+  font-size: 0.78rem;
+  color: var(--text-main);
+  z-index: 2;
+}
+
+.plot-tooltip p {
+  margin: 3px 0;
+}
+
+.plot-legend {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.plot-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-dot,
+.legend-bar {
+  display: inline-block;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.legend-dot-function {
+  background: #0f4f6a;
+}
+
+.legend-dot-midpoint {
+  background: #0f766e;
+}
+
+.legend-bar {
+  width: 14px;
+  height: 4px;
+  border-radius: 999px;
+}
+
+.legend-bar-interval {
+  background: rgba(15, 118, 110, 0.5);
+}
+
+.theory-panel,
+.example-panel {
+  display: grid;
+  gap: 14px;
+}
+
+.theory-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.theory-card {
+  border: 1px solid rgba(19, 35, 58, 0.12);
+  border-radius: 12px;
+  background: rgba(245, 251, 255, 0.72);
+  padding: 14px;
+}
+
+.theory-card h3 {
+  margin: 0 0 6px;
+  font-size: 0.98rem;
+}
+
+.theory-card p {
+  margin: 6px 0;
+  color: var(--text-muted);
+}
+
+.theory-card-wide {
+  margin-top: 2px;
+}
+
+.math-block {
+  overflow-x: auto;
+}
+
+.theory-canvas {
+  width: 100%;
+  border: 1px dashed rgba(19, 35, 58, 0.2);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.example-steps {
+  display: grid;
+  gap: 12px;
+}
+
+.iterations-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.82rem;
+}
+
+.iterations-table th,
+.iterations-table td {
+  text-align: left;
+  padding: 8px 6px;
+  border-bottom: 1px dashed rgba(19, 35, 58, 0.14);
+  white-space: nowrap;
+}
+
+.iterations-table th {
+  color: var(--accent-strong);
+  font-size: 0.76rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
 @media (max-width: 780px) {
   .page-shell {
-    width: min(1100px, 94vw);
+    width: min(1100px, 96vw);
     padding-top: 24px;
   }
 
@@ -375,8 +641,41 @@ body::after {
     grid-template-columns: 1fr;
   }
 
+  .result-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
   .methods-grid {
     grid-template-columns: 1fr;
+  }
+
+  .theory-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .process-canvas {
+    height: 320px;
+  }
+
+  .calculation-layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "form"
+      "result"
+      "outputs"
+      "visualization"
+      "iterations";
+  }
+}
+
+@media (max-width: 1120px) and (min-width: 781px) {
+  .calculation-layout {
+    grid-template-columns: minmax(260px, 0.85fr) minmax(0, 1fr);
+    grid-template-areas:
+      "form result"
+      "form outputs"
+      "visualization visualization"
+      "iterations iterations";
   }
 }
 
