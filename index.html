@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Numeric Solver Studio - Selecciona un método</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="hero">
+        <h1>Numeric Solver Studio</h1>
+        <p>
+          Selecciona un método para calcular raices, resolver sistemas o aproximar valores.
+        </p>
+      </section>
+
+      <section class="methods-container">
+        <div id="methodsGrid" class="methods-grid">
+          <!-- Las tarjetas se generarán con JavaScript -->
+        </div>
+      </section>
+    </main>
+
+    <script src="js/core/method-skill.js" defer></script>
+    <script src="js/core/expression-evaluator.js" defer></script>
+    <script src="js/algorithms/registry.js" defer></script>
+    <script src="js/algorithms/bisection.js" defer></script>
+    <script src="js/menu.js" defer></script>
+  </body>
+</html>
