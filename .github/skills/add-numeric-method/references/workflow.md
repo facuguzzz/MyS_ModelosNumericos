@@ -27,8 +27,12 @@
 - `NumericRegistry.registerAlgorithm(...)`.
 - Script en `index.html` y `solver.html`.
 - Confirmar tarjeta en categoria.
+- Verificar que no haya carga duplicada del mismo script.
+- Verificar que el archivo nuevo no reutilice nombres top-level ya existentes en otros algoritmos.
 
 ## 5) Validar en interfaz
 - Revisar desktop y mobile.
 - Confirmar que no se rompen espaciados ni layout.
 - Confirmar render de formulas y texto de Teoria/Ejemplo.
+- Confirmar en runtime que no hay errores de consola al abrir `index.html` y `solver.html`.
+- Si un metodo no aparece en menu, validar DOM final con navegador headless y revisar errores de script antes de cerrar.

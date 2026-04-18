@@ -456,9 +456,10 @@ function renderProcessPlot(result) {
     plotHeight: 0,
   };
 
-  visualizationTitle.textContent = calc.visualizationTitle || "Visualizacion del algoritmo";
+  visualizationTitle.textContent =
+    calc.visualizationTitle ?? "Visualizacion del algoritmo";
   visualizationSummary.textContent =
-    calc.visualizationDescription ||
+    calc.visualizationDescription ??
     `Curva de f(x) = ${evaluator.source} con ${rows.length} iteraciones.`;
 
   visualizationPanel.hidden = false;

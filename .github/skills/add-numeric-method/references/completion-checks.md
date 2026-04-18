@@ -4,6 +4,9 @@
 - [ ] El metodo aparece en la categoria correcta del menu.
 - [ ] La navegacion abre `solver.html?method=<code>` correctamente.
 - [ ] `solve(inputParams)` devuelve resultado sin errores para caso valido.
+- [ ] Validacion real en interfaz: la carta del metodo nuevo se renderiza en el DOM final del menu.
+- [ ] Validacion de consola del navegador: no hay errores JS al cargar `index.html` y `solver.html`.
+- [ ] No existe error de colision global (`Identifier '<name>' has already been declared`).
 
 ## Seccion Calculo
 - [ ] Parametros renderizados corresponden al metodo.
@@ -24,3 +27,7 @@
 - [ ] Se respetan espaciados actuales.
 - [ ] Se mantiene la estetica del proyecto (tipografia, tarjetas, jerarquia visual).
 - [ ] No hay regresiones visibles en otros metodos.
+
+## Verificacion recomendada (automatica)
+- [ ] Ejecutar una comprobacion de navegador headless sobre `index.html` y confirmar en el DOM que existen ambas cartas: metodos previos + metodo nuevo.
+- [ ] Si el registro interno muestra el metodo pero la UI no, revisar orden/carga duplicada de scripts y errores de sintaxis en runtime.

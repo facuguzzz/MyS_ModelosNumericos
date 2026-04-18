@@ -9,7 +9,7 @@ const bisectionAlgorithm = (methodSkill?.create || ((value) => value))({
   code: "bisection",
   name: "Biseccion",
   category: "Raices",
-  description: "Busca la raiz de f(x) = x^3 - x - 2 dentro de un intervalo [a, b].",
+  description: "",
   supportsCustomFunction: true,
   functionDefault: "x^3 - x - 2",
   functionHint: "Puedes usar x, + - * / ^ y funciones como sin, cos, exp, log, sqrt.",
@@ -23,8 +23,7 @@ const bisectionAlgorithm = (methodSkill?.create || ((value) => value))({
     summaryLabel: "Resumen",
     outputsTitle: "Valores auxiliares",
     visualizationTitle: "Visualizacion del algoritmo",
-    visualizationDescription:
-      "Curva de la funcion y evolucion del intervalo en cada iteracion.",
+    visualizationDescription: "",
     tableTitle: "Proceso iterativo",
     tableDataKey: "iterationsLog",
     tableColumns: [
@@ -99,7 +98,7 @@ const bisectionAlgorithm = (methodSkill?.create || ((value) => value))({
     {
       id: "function",
       title: "Funcion",
-      description: "Define la funcion que quieres resolver en terminos de x.",
+      description: "",
       fields: [
         {
           key: "functionExpression",
@@ -115,8 +114,7 @@ const bisectionAlgorithm = (methodSkill?.create || ((value) => value))({
     {
       id: "config",
       title: "Intervalo y control",
-      description:
-        "Caso de estudio del documento: f(x) = x^3 - x - 2 en [1, 2].",
+      description: "",
       fields: [
         {
           key: "lowerBound",
