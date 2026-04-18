@@ -49,6 +49,12 @@ Skill para agregar un nuevo metodo numerico de forma consistente con la arquitec
    - Visualizacion y tabla: titulos, columnas y datos coherentes.
    - Teoria y Ejemplo: contenido fiel al PDF con formulas y graficos segun corresponda.
    - Espaciados, tipografia y estilo respetan el sistema visual existente.
+   - Validar ejecucion real en navegador (no solo registro interno): sin errores JS en consola y con carta visible del metodo nuevo.
+
+6. Validar colisiones globales entre scripts.
+   - Evitar nombres top-level genericos repetidos entre archivos de `js/algorithms/`.
+   - Si se usan `const`/`let` en nivel superior, deben tener nombres unicos por algoritmo o encapsularse en IIFE.
+   - Si aparece `Identifier '<name>' has already been declared`, corregir antes de cerrar.
 
 ## Decision Points
 - Si el PDF define formulas diferentes: actualiza `theory.cards[].formulas` y pasos de `example.steps`.

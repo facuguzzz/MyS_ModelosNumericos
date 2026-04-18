@@ -1,5 +1,13 @@
-const registry = globalThis.NumericRegistry;
-const algorithms = registry ? registry.getAlgorithms() : [];
+function getRegistry() {
+  return globalThis.NumericRegistry || null;
+}
+
+function getAlgorithms() {
+  const registry = getRegistry();
+  return registry && typeof registry.getAlgorithms === "function"
+    ? registry.getAlgorithms()
+    : [];
+}
 
 const methodsGrid = document.querySelector("#methodsGrid");
 
@@ -17,6 +25,8 @@ function groupByCategory(items) {
 
 // Crear tarjetas para cada algoritmo disponible
 function renderMethods() {
+  const algorithms = getAlgorithms();
+
   if (algorithms.length === 0) {
     methodsGrid.innerHTML = `
       <div class="no-methods">
@@ -57,4 +67,19 @@ function renderMethods() {
     .join("");
 }
 
-renderMethods();
+function initMenuWithRetry(attempt = 0) {
+  const maxAttempts = 20;
+  const hasRegistry = Boolean(getRegistry());
+  const algorithms = getAlgorithms();
+
+  if (!hasRegistry || algorithms.length === 0) {
+    if (attempt < maxAttempts) {
+      globalThis.setTimeout(() => initMenuWithRetry(attempt + 1), 50);
+      return;
+    }
+  }
+
+  renderMethods();
+}
+
+initMenuWithRetry();
